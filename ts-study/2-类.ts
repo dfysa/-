@@ -16,8 +16,8 @@ class Person {
 let p = new Person(1, "zhangsan");
 
 console.log(p.name); //读 
-person.name = 'lisi'; //写 
-console.log(person.name);
+p.name = 'lisi'; //写 
+console.log(p.name);
 //调用类中方法
 console.log(p.introduce());
 
