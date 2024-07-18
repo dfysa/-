@@ -28,30 +28,7 @@ struct EmployeeInfo {
 
         Row({ space: 20 }) {
           Text('岗位').textStyle()
-          Column({ space: 10 }) {
-            Row({ space: 20 }) {
-              Text('名称').textStyle()
-              Text(this.employee.job.name).textStyle()
-            }
-
-            Row({ space: 20 }) {
-              Text('薪资').textStyle()
-              Counter() {
-                Text(this.employee.job.salary.toString()).textStyle()
-              }
-              .width(140)
-              .onInc(() => {
-                this.employee.job.salary++;
-              })
-              .onDec(() => {
-                this.employee.job.salary--;
-              })
-            }
-          }
-          .backgroundColor('#CCE3CB')
-          .padding(20)
-          .borderRadius(10)
-          .alignItems(HorizontalAlign.Start)
+          JobInfo({ job: this.employee.job })
         }
 
       }
@@ -66,6 +43,39 @@ struct EmployeeInfo {
     .backgroundColor('#E9E9EA')
     .padding(10)
     .justifyContent(FlexAlign.Center)
+  }
+}
+
+
+@Component
+struct JobInfo {
+  @ObjectLink job: Job
+
+  build() {
+    Column({ space: 10 }) {
+      Row({ space: 20 }) {
+        Text('名称').textStyle()
+        Text(this.job.name).textStyle()
+      }
+
+      Row({ space: 20 }) {
+        Text('薪资').textStyle()
+        Counter() {
+          Text(this.job.salary.toString()).textStyle()
+        }
+        .width(140)
+        .onInc(() => {
+          this.job.salary++;
+        })
+        .onDec(() => {
+          this.job.salary--;
+        })
+      }
+    }
+    .backgroundColor('#CCE3CB')
+    .padding(20)
+    .borderRadius(10)
+    .alignItems(HorizontalAlign.Start)
   }
 }
 

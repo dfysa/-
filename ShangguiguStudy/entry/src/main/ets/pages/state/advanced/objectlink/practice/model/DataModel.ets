@@ -1,7 +1,7 @@
 export class Employee {
-  name: string; //姓名
-  age: number; //年龄
-  job: Job; //岗位
+  name: string;
+  age: number;
+  job: Job;
 
   constructor(name: string, age: number, job: Job) {
     this.name = name;
@@ -10,9 +10,10 @@ export class Employee {
   }
 }
 
+@Observed
 export class Job {
-  name: string; //岗位名称
-  salary: number; //岗位薪资
+  name: string;
+  salary: number;
 
   constructor(name: string, salary: number) {
     this.name = name;

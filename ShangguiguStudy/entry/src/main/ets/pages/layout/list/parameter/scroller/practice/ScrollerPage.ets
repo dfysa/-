@@ -2,11 +2,12 @@
 @Component
 struct ScrollerPage {
   data: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+  scroller: Scroller = new Scroller();
 
   build() {
     Stack({ alignContent: Alignment.BottomEnd }) {
-      List({ space: 20 }) {
-        ForEach(this.data, (item) => {
+      List({ space: 20, scroller: this.scroller }) {
+        ForEach(this.data, (item:number) => {
           ListItem() {
             Text(item.toString())
               .itemTextStyle()
@@ -25,6 +26,9 @@ struct ScrollerPage {
       .height(60)
       .backgroundColor(Color.Orange)
       .offset({ x: -20, y: -100 })
+      .onClick(() => {
+        this.scroller.scrollToIndex(0)
+      })
     }
   }
 }

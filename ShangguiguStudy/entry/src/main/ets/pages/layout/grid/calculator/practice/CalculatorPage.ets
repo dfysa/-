@@ -3,7 +3,106 @@
 struct CalculatorPage {
   build() {
     Column() {
+      Grid() {
+        GridItem() {
+          Text('0')
+            .screenTextStyle()
+        }.columnStart(0).columnEnd(3)
 
+        GridItem() {
+          Text('CE')
+            .buttonTextStyle()
+        }
+
+        GridItem() {
+          Text('C')
+            .buttonTextStyle()
+        }
+
+        GridItem() {
+          Text('÷')
+            .buttonTextStyle()
+        }
+
+        GridItem() {
+          Text('x')
+            .buttonTextStyle()
+        }
+
+        GridItem() {
+          Text('7')
+            .buttonTextStyle()
+        }
+
+        GridItem() {
+          Text('8')
+            .buttonTextStyle()
+        }
+
+        GridItem() {
+          Text('9')
+            .buttonTextStyle()
+        }
+
+        GridItem() {
+          Text('-')
+            .buttonTextStyle()
+        }
+
+        GridItem() {
+          Text('4')
+            .buttonTextStyle()
+        }
+
+        GridItem() {
+          Text('5')
+            .buttonTextStyle()
+        }
+
+        GridItem() {
+          Text('6')
+            .buttonTextStyle()
+        }
+
+        GridItem() {
+          Text('+')
+            .buttonTextStyle()
+        }
+
+        GridItem() {
+          Text('1')
+            .buttonTextStyle()
+        }
+
+        GridItem() {
+          Text('2')
+            .buttonTextStyle()
+        }
+
+        GridItem() {
+          Text('3')
+            .buttonTextStyle()
+        }
+
+        GridItem() {
+          Text('=')
+            .buttonTextStyle()
+            .backgroundColor('#1aa1e2')
+        }.rowStart(4).rowEnd(5)
+
+        GridItem() {
+          Text('0')
+            .buttonTextStyle()
+        }.columnStart(0).columnEnd(1)
+
+        GridItem() {
+          Text('.')
+            .buttonTextStyle()
+        }
+      }
+      .gridStyle()
+      .rowsTemplate('1fr 1fr 1fr 1fr 1fr 1fr')
+      .columnsTemplate('1fr 1fr 1fr 1fr')
     }.width('100%')
     .height('100%')
     .justifyContent(FlexAlign.Center)

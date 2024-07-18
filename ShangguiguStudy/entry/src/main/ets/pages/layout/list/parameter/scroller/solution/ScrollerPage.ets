@@ -7,7 +7,7 @@ struct ScrollerPage {
   build() {
     Stack({ alignContent: Alignment.BottomEnd }) {
       List({ space: 20, scroller: this.scroller }) {
-        ForEach(this.data, (item) => {
+        ForEach(this.data, (item:number) => {
           ListItem() {
             Text(item.toString())
               .itemTextStyle()
