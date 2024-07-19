@@ -7,7 +7,7 @@ export class Person {
   phone: string;
   isStar: boolean = false;
 
-  constructor(name, phone) {
+  constructor(name: string, phone: string) {
     this.id = nextId++;
     this.name = name;
     this.phone = phone;

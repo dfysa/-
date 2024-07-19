@@ -17,13 +17,13 @@ struct ContactList {
         Text('联系人').titleStyle()
         Blank()
         Button(this.isSelectMode ? '取消' : '选择')
-          .buttonStyle(Color.Gray)
+          .backgroundColor(Color.Gray)
           .onClick(() => {
             this.isSelectMode = !this.isSelectMode;
             this.selectedIdList = []
           })
         Button('+')
-          .buttonStyle(Color.Gray)
+          .backgroundColor(Color.Gray)
           .onClick(() => {
             this.persons.push(new Person(getRandomName(), getRandomPhone()))
           })
@@ -51,7 +51,7 @@ struct ContactList {
       //按钮
       if (this.isSelectMode) {
         Button('删除')
-          .buttonStyle(Color.Red)
+          .backgroundColor(Color.Gray)
           .margin({ top: 10 })
           .onClick(() => {
             this.persons = this.persons.filter(person =>!this.selectedIdList.includes(person.id))

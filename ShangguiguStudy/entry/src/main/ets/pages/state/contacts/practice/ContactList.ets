@@ -1,10 +1,14 @@
-import { getRandomName, getRandomPhone } from '../../../../utils/RandomUtil';
-import { Person } from './model/DataModel';
+import { getRandomName, getRandomPhone } from '../../../../utils/RandomUtil'
+import { ContactItem } from './ContactItem';
+import { Person } from './model/DataModel'
 
 @Entry
 @Component
-struct ContactsPage {
+struct ContactList {
   @State persons: Person[] = [new Person(getRandomName(), getRandomPhone()), new Person(getRandomName(), getRandomPhone())];
+  @State currentExpandId: number = -1;
+  @State isSelectMode: boolean = false;
+  @State selectedIdList: number[] = []
 
   build() {
     Column() {
@@ -12,10 +16,17 @@ struct ContactsPage {
       Row({ space: 10 }) {
         Text('联系人').titleStyle()
         Blank()
-        Button('选择')
-          .buttonStyle(Color.Gray)
+        Button(this.isSelectMode ? '取消' : '选择')
+          .backgroundColor(Color.Gray)
+          .onClick(() => {
+            this.isSelectMode = !this.isSelectMode;
+            this.selectedIdList = []
+          })
         Button('+')
-          .buttonStyle(Color.Gray)
+          .backgroundColor(Color.Gray)
+          .onClick(() => {
+            this.persons.push(new Person(getRandomName(), getRandomPhone()))
+          })
       }
       .width('100%')
       .height(60)
@@ -24,26 +35,13 @@ struct ContactsPage {
       List({ space: 10 }) {
         ForEach(this.persons, (person: Person) => {
           ListItem() {
-            Row({ space: 10 }) {
-              //头像
-              Image($r('app.media.img_user_avatar'))
-                .width(40)
-                .height(40)
-              //姓名
-              Text(person.name)
-                .fontSize(20)
-                .fontWeight(500)
-              Blank()
-              //收藏
-              Image($r('app.media.ic_star_empty'))
-                .width(30)
-                .height(30)
-            }
-            .backgroundColor(Color.White)
-            .padding(10)
-            .borderRadius(10)
-            .width('100%')
-            .height(70)
+            //联系人
+            ContactItem({
+              person: person,
+              currentExpandId: $currentExpandId,
+              isSelectMode: this.isSelectMode,
+              selectedIdList: $selectedIdList
+            })
           }
         })
       }
@@ -51,9 +49,14 @@ struct ContactsPage {
       .layoutWeight(1)
 
       //按钮
-      Button('删除')
-        .buttonStyle(Color.Red)
-        .margin({ top: 10 })
+      if (this.isSelectMode) {
+        Button('删除')
+          .backgroundColor(Color.Gray)
+          .margin({ top: 10 })
+          .onClick(() => {
+            this.persons = this.persons.filter(person =>!this.selectedIdList.includes(person.id))
+          })
+      }
 
     }
     .width('100%')
@@ -62,6 +65,7 @@ struct ContactsPage {
     .padding(10)
   }
 }
+
 
 @Extend(Text) function titleStyle() {
   .fontSize(30)
