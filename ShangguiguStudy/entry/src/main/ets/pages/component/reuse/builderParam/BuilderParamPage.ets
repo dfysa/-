@@ -3,10 +3,10 @@
 struct BuilderParamPage {
   build() {
     Column({ space: 50 }) {
-      //创建卡片组件（传参）
+      // 创建卡片组件（传参）
       Card({ content: imageBuilder })
 
-      //创建卡片组件（"子组件"）
+      // 创建卡片组件（"子组件"）
       Card() {
         Column({ space: 10 }) {
           Text('鸿蒙操作系统')
@@ -21,7 +21,7 @@ struct BuilderParamPage {
   }
 }
 
-//卡片内容
+// 卡片内容
 @Builder function imageBuilder() {
   Column({ space: 10 }) {
     Image($r('app.media.img_harmony'))
@@ -31,17 +31,22 @@ struct BuilderParamPage {
   }
 }
 
-//卡片组件
+// 卡片组件
 @Component
 struct Card {
-  @BuilderParam content: () => void; //@BuilderParam属性
+  @BuilderParam content: () => void = defaultContent; // @BuilderParam 属性，设置默认值
 
   build() {
     Column() {
-      this.content(); //占位符
+      this.content(); // 占位符
     }.width('90%')
     .padding(10)
     .borderRadius(10)
     .shadow({ radius: 20 })
   }
+}
+
+// 默认卡片内容
+@Builder function defaultContent() {
+  Text('默认内容')
 }
