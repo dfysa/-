@@ -13,11 +13,11 @@ import sendableColorSpaceManager from '@ohos.graphics.sendableColorSpaceManager'
 import { convertMillisecondsToTime } from '../utils/DateUtil'
 
 
-@Entry
+
 
 @Component
 
-struct PracticePage {
+export struct PracticePage {
 
   @State practiceStatus: PracticeStatus = PracticeStatus.Stopped
 

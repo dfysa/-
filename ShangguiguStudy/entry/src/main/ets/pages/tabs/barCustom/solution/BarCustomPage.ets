@@ -35,3 +35,9 @@ struct BarCustomPage {
 }
 
 
+@Extend(Text) function tabTitleStyle(color: ResourceColor) {
+  .fontSize(10)
+  .fontWeight(FontWeight.Medium)
+  .fontColor(color) //Color.Black
+  .margin({ bottom: 2 })
+}

@@ -1,20 +1,48 @@
+import { PracticePage } from './PracticePage';
+
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World';
+  @State currentTabIndex: number = 0;
 
   build() {
-    RelativeContainer() {
-      Text(this.message)
-        .id('HelloWorld')
-        .fontSize(50)
-        .fontWeight(FontWeight.Bold)
-        .alignRules({
-          center: { anchor: '__container__', align: VerticalAlign.Center },
-          middle: { anchor: '__container__', align: HorizontalAlign.Center }
-        })
+    Tabs() {
+      TabContent() {
+        PracticePage()
+      }.tabBar(this.barBuilder(0,'答题',$r('app.media.ic_practice'),$r('app.media.ic_practice_selected')))
+      TabContent() {
+        Text()
+      }.tabBar(this.barBuilder(1,'圈子',$r('app.media.ic_circle'),$r('app.media.ic_circle_selected')))
+
+      TabContent() {
+        Text()
+      }.tabBar(this.barBuilder(2,'我的',$r('app.media.ic_mine'),$r('app.media.ic_mine_selected')))
+
     }
-    .height('100%')
-    .width('100%')
+    .barPosition(BarPosition.End)
+    .onChange((index)=>{
+      this.currentTabIndex=index;
+    })
+
+
+
+
   }
+
+  @Builder
+  barBuilder(index: number, title: string, icon: Resource, iconSelected: Resource) {
+    Column() {
+      Image(this.currentTabIndex === index ? iconSelected : icon)
+        .width(25)
+        .height(25)
+      Text(title)
+        .tabTitleStyle(this.currentTabIndex === index ? Color.Black:'#959595')
+    }
+  }
+}
+@Extend(Text) function tabTitleStyle(color: ResourceColor) {
+  .fontSize(10)
+  .fontWeight(FontWeight.Medium)
+  .fontColor(color) //Color.Black
+  .margin({ bottom: 2 })
 }
