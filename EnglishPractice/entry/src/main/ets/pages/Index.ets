@@ -1,21 +1,23 @@
+import { CirclePage } from './CirclePage';
+import { MinePage } from './MinePage';
 import { PracticePage } from './PracticePage';
 
 @Entry
 @Component
 struct Index {
-  @State currentTabIndex: number = 0;
+  @StorageLink('currentTabIndex') currentTabIndex: number = 0;
 
   build() {
-    Tabs() {
+    Tabs({index:this.currentTabIndex}) {
       TabContent() {
         PracticePage()
       }.tabBar(this.barBuilder(0,'答题',$r('app.media.ic_practice'),$r('app.media.ic_practice_selected')))
       TabContent() {
-        Text()
+        CirclePage()
       }.tabBar(this.barBuilder(1,'圈子',$r('app.media.ic_circle'),$r('app.media.ic_circle_selected')))
 
       TabContent() {
-        Text()
+        MinePage()
       }.tabBar(this.barBuilder(2,'我的',$r('app.media.ic_mine'),$r('app.media.ic_mine_selected')))
 
     }

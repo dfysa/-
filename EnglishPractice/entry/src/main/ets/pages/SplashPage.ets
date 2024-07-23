@@ -1,6 +1,7 @@
 import { PracticePage } from './PracticePage';
 import router from '@ohos.router';
-
+PersistentStorage.PersistProp('token','')
+AppStorage.SetOrCreate('currentTabIndex',0)
 @Entry
 @Component
 struct SplashPage {
